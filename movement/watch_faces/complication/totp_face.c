@@ -9,6 +9,7 @@
 // Use https://totp.danhersam.com/ to generate test codes for verification
 
 // HOTP keys are specified by setting a timestep value of '0' for the key
+// Long press the light button to increment the code for HOTP
 
 static const uint8_t num_keys = 3;
 static uint8_t keys[] = {
