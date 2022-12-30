@@ -8,6 +8,8 @@
 // Use https://cryptii.com/pipes/base32-to-hex to convert base32 to hex
 // Use https://totp.danhersam.com/ to generate test codes for verification
 
+// HOTP keys are specified by setting a timestep value of '0' for the key
+
 static const uint8_t num_keys = 3;
 static uint8_t keys[] = {
     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x21, 0xde, 0xad, 0xbe, 0xef, // 1 - JBSWY3DPEHPK3PXP
