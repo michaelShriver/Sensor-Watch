@@ -33,6 +33,7 @@ const watch_face_t watch_faces[] = {
     sunrise_sunset_face,
     moon_phase_face,
     stopwatch_face,
+    totp_face,
     preferences_face,
     set_time_face,
 };

@@ -3,7 +3,7 @@
 fw_dir="firmware/download"
 sim_dir="firmware/simulate"
 colors=("green" "blue")
-variants=("standard" "backer" "alt_time" "deep_space_now" "focus" "the_athlete" "the_backpacker" "the_stargazer")
+variants=("standard" "backer" "alt_time" "deep_space_now" "focus" "the_athlete" "the_backpacker" "the_stargazer" "custom")
 
 if [ -d "$fw_dir" ] ; then
     rm -r "$fw_dir"
