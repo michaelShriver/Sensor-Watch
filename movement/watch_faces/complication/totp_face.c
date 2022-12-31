@@ -18,6 +18,11 @@ void totp_face_setup(movement_settings_t *settings, uint8_t watch_face_index, vo
         *context_ptr = malloc(sizeof(totp_state_t));
         memset(*context_ptr, 0, sizeof(totp_state_t));
     }
+    totp_state_t *totp_state = (totp_state_t *)*context_ptr;
+    // Initialize the counter with initial values (optional)
+    for(uint8_t i = 0;i < num_keys; i++){
+        totp_state->hotp_counter[i] = counterinit[i];
+    }
 }
 
 void totp_face_activate(movement_settings_t *settings, void *context) {
@@ -66,12 +71,13 @@ bool totp_face_loop(movement_event_t event, movement_settings_t *settings, void 
                     totp_state->steps = result.quot;
                 }
                 valid_for = timesteps[index] - result.rem;
+                sprintf(buf, "%c%c%2d%06lu", labels[index][0], labels[index][1], valid_for, totp_state->current_code);
             } else {
                 TOTP(keys + totp_state->current_key_offset, key_sizes[index], timesteps[index]);
                 totp_state->current_code = getCodeFromSteps(totp_state->hotp_counter[index]);
                 valid_for = totp_state->hotp_counter[index];
+                sprintf(buf, "%c%c  %06lu", labels[index][0], labels[index][1], totp_state->current_code);
             }
-            sprintf(buf, "%c%c%2d%06lu", labels[index][0], labels[index][1], valid_for, totp_state->current_code);
 
             watch_display_string(buf, 0);
             break;
@@ -87,7 +93,7 @@ bool totp_face_loop(movement_event_t event, movement_settings_t *settings, void 
                 totp_state->hotp_counter[index]++;
                 totp_state->current_code = getCodeFromSteps(totp_state->hotp_counter[index]);
                 valid_for = totp_state->hotp_counter[index];
-                sprintf(buf, "%c%c%2d%06lu", labels[index][0], labels[index][1], valid_for, totp_state->current_code);
+                sprintf(buf, "%c%c  %06lu", labels[index][0], labels[index][1], totp_state->current_code);
 
                 watch_display_string(buf, 0);
             }
@@ -110,7 +116,7 @@ bool totp_face_loop(movement_event_t event, movement_settings_t *settings, void 
                 TOTP(keys + totp_state->current_key_offset, key_sizes[totp_state->current_index], totp_state->hotp_counter[totp_state->current_index]);
                 totp_state->current_code = getCodeFromSteps(totp_state->hotp_counter[totp_state->current_index]);
                 valid_for = totp_state->hotp_counter[totp_state->current_index];
-                sprintf(buf, "%c%c%2d%06lu", labels[totp_state->current_index][0], labels[totp_state->current_index][1], valid_for, totp_state->current_code);
+                sprintf(buf, "%c%c  %06lu", labels[totp_state->current_index][0], labels[totp_state->current_index][1], totp_state->current_code);
 
                 watch_display_string(buf, 0);
             }
