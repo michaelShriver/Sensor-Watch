@@ -30,7 +30,7 @@ static const char labels[][2] = {
     { 'c', 'd' },
     { 'e', 'f' }
 };
-static const uint32_t counterinit[] = {
+static const uint8_t counterinit[] = {
     0,
     0,
     0
