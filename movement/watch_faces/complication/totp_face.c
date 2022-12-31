@@ -20,7 +20,7 @@ void totp_face_setup(movement_settings_t *settings, uint8_t watch_face_index, vo
     }
     totp_state_t *totp_state = (totp_state_t *)*context_ptr;
     // Initialize the counter with initial values (optional)
-    for(uint8_t i = 0;i < num_keys; i++){
+    for(uint8_t i = 0;i < NUM_KEYS; i++){
         totp_state->hotp_counter[i] = counterinit[i];
     }
 }
@@ -102,7 +102,7 @@ bool totp_face_loop(movement_event_t event, movement_settings_t *settings, void 
             movement_move_to_face(0);
             break;
         case EVENT_ALARM_BUTTON_UP:
-            if (index + 1 < num_keys) {
+            if (index + 1 < NUM_KEYS) {
                 totp_state->current_key_offset += key_sizes[index];
                 totp_state->current_index++;
             } else {

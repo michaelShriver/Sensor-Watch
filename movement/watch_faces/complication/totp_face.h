@@ -3,7 +3,8 @@
 
 #include "movement.h"
 
-static const uint8_t num_keys = 3;
+#define NUM_KEYS 3
+
 static uint8_t keys[] = {
     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x21, 0xde, 0xad, 0xbe, 0xef, // 1 - JBSWY3DPEHPK3PXP
     0x5c, 0x0d, 0x27, 0x6b, 0x6d, 0x9a, 0x01, 0x22, 0x20, 0x4f, // 2 - E9M348K0ADIDFBC2
@@ -42,7 +43,7 @@ typedef struct {
     uint32_t current_code;
     uint8_t current_index;
     uint8_t current_key_offset;
-    uint32_t hotp_counter[num_keys];
+    uint32_t hotp_counter[NUM_KEYS];
 } totp_state_t;
 
 void totp_face_setup(movement_settings_t *settings, uint8_t watch_face_index, void ** context_ptr);
