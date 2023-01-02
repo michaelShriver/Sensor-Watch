@@ -5,10 +5,6 @@
 #include "watch_utility.h"
 #include "TOTP.h"
 
-// Use https://cryptii.com/pipes/base32-to-hex to convert base32 to hex
-// Use https://totp.danhersam.com/ to generate test codes for verification
-
-// HOTP keys are specified by setting a timestep value of '0' for the key
 // Long press the light button to increment the code for HOTP
 
 void totp_face_setup(movement_settings_t *settings, uint8_t watch_face_index, void ** context_ptr) {
