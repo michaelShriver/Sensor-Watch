@@ -31,10 +31,12 @@ const watch_face_t watch_faces[] = {
     simple_clock_face,
     world_clock_face,
     beats_face,
-    alarm_face,
     tomato_face,
     sunrise_sunset_face,
+    moon_phase_face,
     totp_face,
+    thermistor_logging_face,
+    alarm_face,
     preferences_face,
     set_time_face,
 };
@@ -46,6 +48,6 @@ const watch_face_t watch_faces[] = {
  * excludes these faces from the normal rotation.
  * Usually it makes sense to set this to the preferences face.
  */
-#define MOVEMENT_SECONDARY_FACE_INDEX 0 // or (MOVEMENT_NUM_FACES - 2)
+#define MOVEMENT_SECONDARY_FACE_INDEX (MOVEMENT_NUM_FACES - 5)
 
 #endif // MOVEMENT_CONFIG_H_
