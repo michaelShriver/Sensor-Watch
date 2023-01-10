@@ -25,7 +25,7 @@ void totp_face_activate(movement_settings_t *settings, void *context) {
     (void) settings;
     totp_state_t *totp_state = (totp_state_t *)context;
     uint8_t index = totp_state->current_index;
-    TOTP(keys, key_sizes[index], timesteps[index]);
+    TOTP(keys + totp_state->current_key_offset, key_sizes[index], timesteps[index]);
     totp_state->timestamp = watch_utility_date_time_to_unix_time(watch_rtc_get_date_time(), movement_timezone_offsets[settings->bit.time_zone] * 60);
     // Check for initial key type and set initial code
     if (timesteps[index] != 0) {
